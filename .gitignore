@@ -1,0 +1,25 @@
+.idea
+.eclipse
+# Ignore Play! working directory #
+bin/
+/db
+.eclipse
+/lib/
+/logs/
+/modules
+/project/project
+/project/target
+/target
+tmp/
+test-result
+server.pid
+*.eml
+/dist/
+.cache
+.gradle
+.g8
+.settings
+.project
+.classpath
+.cache-main
+.cache-tests
