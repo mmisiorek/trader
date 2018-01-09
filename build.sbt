@@ -13,3 +13,16 @@ libraryDependencies ++= Seq(
 	"org.web3j" % "core" % "3.2.0"
 )
 
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.6"
+
+libraryDependencies ++= Seq(
+  javaJdbc,
+  cache,
+  javaJpa,
+  "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final" // replace by your jpa implementation
+)
+
+libraryDependencies ++= Seq(
+	"com.h2database" % "h2" % "1.3.176",
+	"javax.persistence" % "persistence-api" % "1.0"
+)
