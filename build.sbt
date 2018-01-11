@@ -13,6 +13,9 @@ libraryDependencies ++= Seq(
 	"org.web3j" % "core" % "3.2.0"
 )
 
+// https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.5.8"
+
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.6"
 
 libraryDependencies ++= Seq(

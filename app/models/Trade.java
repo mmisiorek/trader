@@ -58,35 +58,51 @@ public class Trade {
 	}
 	
 	public BigInteger getContractAddress() {
-		return new BigInteger(contractAddress);
+		return toBigInteger(contractAddress);
 	}
 	
 	public void setContractAddress(BigInteger contractAddress) {
-		this.contractAddress = contractAddress.toString();
+		this.contractAddress = toAddress(contractAddress); 
+	}
+	
+	public void setContractAddress(String address) {
+		this.contractAddress = address;
 	}
 	
 	public BigInteger getOwnerAddress() {
-		return new BigInteger(ownerAddress);
+		return toBigInteger(ownerAddress);
 	}
 	
 	public void setOwnerAddress(BigInteger ownerAddress) {
-		this.ownerAddress = ownerAddress.toString();
+		this.ownerAddress = toAddress(ownerAddress);
+	}
+	
+	public void setOwnerAddress(String address) {
+		this.ownerAddress = address;
 	}
 	
 	public BigInteger getAdvanceAmount() {
-		return new BigInteger(advanceAmount);
+		return toBigInteger(advanceAmount);
 	}
 	
 	public void setAdvanceAmount(BigInteger advanceAmount) {
-		this.advanceAmount = advanceAmount.toString(); 
+		this.advanceAmount = toString(advanceAmount); 
+	}
+	
+	public void setAdvanceAmount(String amount) {
+		this.advanceAmount = amount;
 	}
 	
 	public BigInteger getRealizationAmount() {
-		return new BigInteger(realizationAmount); 
+		return toBigInteger(realizationAmount); 
 	}
 	
 	public void setRealizationAmount(BigInteger realizationAmount) {
-		this.realizationAmount = realizationAmount.toString(); 
+		this.realizationAmount = toString(realizationAmount); 
+	}
+	
+	public void setRealizationAmount(String amount) {
+		this.realizationAmount = amount;
 	}
 	
 	public Date getAdvanceDate() {
@@ -135,6 +151,36 @@ public class Trade {
 	
 	public static String createRandomHash() {
 		return UUID.randomUUID().toString();
+	}
+	
+	public static String toAddress(BigInteger integer) {
+		if(integer == null) {
+			return null; 
+		}
+		
+		return "0x"+integer.toString(16);
+	}
+	
+	private static String toString(BigInteger integer) {
+		if(integer == null) {
+			return null;
+		}
+		
+		return integer.toString();
+	}
+	
+	private static BigInteger toBigInteger(String value) {
+		if(value == null) {
+			return null;
+		}
+		
+		try {			
+			return new BigInteger(value);
+		} catch(NumberFormatException e) {
+			value = value.replace("0x", "");
+			return new BigInteger(value, 16); 
+		}
+		
 	}
 
 }

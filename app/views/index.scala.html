@@ -1,6 +1,31 @@
 @(size: Int)
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play! - size is @size</h1><br><br>
-  <a href="/trade/add">Add a trade</a>
-}
+<h1>Trader</h1>
+
+<p>
+	The site is quite simple. First any anonymous user can create a contract which is going to create to values:
+	<ul>
+		<li>advance amount - which needs to be paid before the sold product is created/done.</li>
+		<li>realization amount - which needs to be paid after the product is created/done.</li>
+	</ul>
+	Total amount of the contract is (advance amount + realization amount). 
+</p>
+
+<p>
+	A seller goes into add a trade link where he defines the advance amount and the realization amount for the contract. The contract is deployed
+	into the Ethereum blockchain. On the page he can see a status of the payment (which are sent from events on the blockchain and updated by WebSocket). 
+</p>
+
+<p>
+	A buyer gets a link from seller to the contract. There he can create another sub-contract on the Ethereum blockchain and after this he can see his sub-contract view.
+	The sub-account is used to transfer funds from buyer's casual Ethereum account and he can use them to pay out the main contract. On the view page of sub-account the user 
+	can see:
+	<ul>
+		<li>the current amount which is on the account - updated from WebSocket and send from the blockchain</li>
+		<li>pay button - which allows to send any amount to the main contract</li>
+		<li>pay advance button - which sends the remaining amount to fulfill the advance amount. When the advance is already paid - it is going to return money on the sub-account</li>
+		<li>pay realization button - which sends the remaining amount to fulfill the realization amount. When the realization is paid - it is going to return money to the sub-account.</li>
+	</ul>
+</p>
+
+<a href="/trade/new">Add a trade</a>

@@ -1,0 +1,8 @@
+@(trade: Trade)
+
+@import models._
+
+My contract address is @Trade.toAddress(trade.getContractAddress) <br><br>
+
+<a href="/trade/view/@trade.getUniqueHash/advanceAmount">View advance amount from blockchain</a> <br><br>
+<a href="/trade/view/@trade.getUniqueHash/realizationAmount">View realization amount from blockchain</a>

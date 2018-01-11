@@ -4,8 +4,11 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-GET		/trade/add				   controllers.TradeController.add
-GET     /trade/:uniqueString        controllers.TradeController.view(uniqueString: String)
+GET		/trade/new			       controllers.TradeController.newEntity
+POST    /trade/new                  controllers.TradeController.add   
+GET     /trade/view/:uniqueString   controllers.TradeController.view(uniqueString: String)
+GET     /trade/view/:uniqueString/advanceAmount controllers.TradeController.viewAdvanceAmount(uniqueString: String)
+GET     /trade/view/:uniqueString/realizationAmount controllers.TradeController.viewRealizationAmount(uniqueString: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

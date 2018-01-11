@@ -1,0 +1,19 @@
+@(advanceFieldInvalid: Boolean, realizationFieldInvalid: Boolean)
+
+Create a new contract:
+
+<form method="POST">
+	<label for="advanceAmount">Advance amount of contract:</label>
+	<input type="text" name="advanceAmount" /><br>
+	@if(advanceFieldInvalid) {
+		<br>The field is invalid!
+	}
+	
+	<label for="realizationAmount">Realization amount of contract:</label>
+	<input type="text" name="realizationAmount" /><br>
+	@if(realizationFieldInvalid) {
+		<br>The field is invalid!
+	}
+	
+	<input type="submit" value="Submit" />
+</form>

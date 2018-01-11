@@ -1,8 +1,14 @@
 pragma solidity ^0.4.0;
 
+/* 
+ 
+ This is the main contract
+
+ */
 contract Trade {
     
     address private owner;
+    // accept payments from sub-accounts only which were created by this contract; it needs to be done
     address[] private buyerStorages;
     string private id;
     
@@ -23,6 +29,8 @@ contract Trade {
         _;
     }
     
+    // _id unique id for the contract 
+    //TODO owner's account must be takes as an argument here - sender is not the right person
     function Trade(uint aA, uint rA, string _id) payable {
         owner = msg.sender;
         buyerStorages = new address[](0);
@@ -74,14 +82,17 @@ contract Trade {
             }
         }
         
+        // return your money when you paid too much
         if(remainingValue > 0) {
             msg.sender.transfer(remainingValue); 
         }
         
+        // transfer money to owner's account when 
         if(valueToOwner > 0) {
             owner.transfer(valueToOwner);
         }
         
+        // destroy the contract when both are paid
         if(isAdvancedPaid && isRealizationPaid) {
             selfdestruct(owner); 
         }
@@ -147,6 +158,9 @@ contract Trade {
     }
 }
 
+/* 
+ Sub-account for the buyer. It needs to be finished.
+ */
 contract TradeBuyerStorage {
     
     address owner;
