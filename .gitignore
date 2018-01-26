@@ -23,3 +23,6 @@ server.pid
 .classpath
 .cache-main
 .cache-tests
+.sbt
+.ivy2
+.oracle_jre_usage

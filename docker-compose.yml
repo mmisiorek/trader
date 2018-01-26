@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: trader
+      MYSQL_USER: trader
+      MYSQL_PASSWORD: trader
+      MYSQL_ROOT_PASSWORD: trader12
+    ports:
+      - "33061:3306"
+      
+  web:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/home/play/Code
+    environment:
+      ETHEREUM_CLIENT_PROTOCOL: http
+      ETHEREUM_CLIENT_HOSTNAME: ethereum_node
+      ETHEREUM_CLIENT_PORT: 8545
+      ETHEREUM_PRIVATE_KEY: 0d4e08d84dcb55af5b149a8e2aa5579dea425907ce3c8570edd1c9e2429b0a67
+      ETHEREUM_GAS_PRICE: 10
+      ETHEREUM_GAS_LIMIT: 1000000
+    command: ["sbt", "run"]
+    working_dir: /home/play/Code
+    stdin_open: true
+    tty: true
+    depends_on:
+      - database
+      - ethereum_node
+      
+  ethereum_node:
+      image: trufflesuite/ganache-cli:latest
+      command: ["node", "./build/cli.node.js", "--accounts=10", "--account=0x0d4e08d84dcb55af5b149a8e2aa5579dea425907ce3c8570edd1c9e2429b0a67,1000000000000000000"]
+      ports:
+        - "8545:8545"
