@@ -26,3 +26,4 @@ server.pid
 .sbt
 .ivy2
 .oracle_jre_usage
+resources/solidity
